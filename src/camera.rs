@@ -5,8 +5,6 @@ use crate::screen::{SCREEN_HEIGHT, SCREEN_WIDTH};
 pub struct Camera {
     pub position: Vector3<f32>,
     pub size: Vector2<f32>,
-    // pub aspect: f32,
-    // pub scale: f32,
 }
 
 impl Camera {
@@ -17,15 +15,6 @@ impl Camera {
             SCREEN_WIDTH as f32,
             SCREEN_HEIGHT as f32,
             0.0f32,
-            // 0.0f32,
-            // self.scale,
-            // 0.0f32,
-            // self.scale / self.aspect,
-
-            // -0.5f32 * (self.aspect * self.scale),
-            // 0.5f32 * (self.aspect * self.scale),
-            // -0.5f32 * (1.0f32 / self.aspect) * self.scale,
-            // 0.5f32 * (1.0f32 / self.aspect) * self.scale,
             -1.0f32,
             1.0f32,
         );

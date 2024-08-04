@@ -25,10 +25,8 @@ const OPAQUE_SHADER: &str = include_str!("shaders/opaque.wgsl");
 
 pub struct Renderer<'a> {
     world: Rc<RefCell<World>>,
-    // world: &'a World,
     shader: ShaderModule,
 
-    // window: &'a Window,
     adapter: wgpu::Adapter,
     surface: wgpu::Surface<'a>,
     device: wgpu::Device,
@@ -36,17 +34,9 @@ pub struct Renderer<'a> {
     config: wgpu::SurfaceConfiguration,
     surface_size: winit::dpi::PhysicalSize<u32>,
 
-    // render_pipeline: wgpu::RenderPipeline,
     square_mesh: Mesh,
-    // diffuse_texture: texture::Texture,
-    // diffuse_bind_group: wgpu::BindGroup,
-    // camera: Camera,
-    // camera_controller: CameraController,
     camera_uniform: CameraUniform,
     camera_buffer: wgpu::Buffer,
-    // camera_bind_group: wgpu::BindGroup,
-    // instances: Vec<Instance>,
-    // instance_buffer: wgpu::Buffer,
 }
 
 impl<'a> Renderer<'a> {
@@ -124,7 +114,6 @@ impl<'a> Renderer<'a> {
             self.config.height = new_size.height;
             self.surface.configure(&self.device, &self.config);
 
-            // self.world.resize(new_size);
             self.world.borrow_mut().resize(new_size);
         }
     }
@@ -245,19 +234,6 @@ impl<'a> Renderer<'a> {
                 wgpu::IndexFormat::Uint16,
             );
             render_pass.draw_indexed(0..self.square_mesh.indices_len, 0, 0..instances.len() as _);
-
-            // render_pass.set_vertex_buffer(0, vertex_buffer.slice(..));
-            // render_pass.set_vertex_buffer(1, instance_buffer.slice(..));
-            // render_pass.set_index_buffer(
-            //     index_buffer.slice(..),
-            //     wgpu::IndexFormat::Uint16,
-            // );
-            // render_pass.draw_indexed(0..num_indices, 0, 0..instances.len() as _);
-
-            // render_pass.set_vertex_buffer(0, self.vertex_buffer.slice(..));
-            // render_pass.set_vertex_buffer(1, self.instance_buffer.slice(..));
-            // render_pass.set_index_buffer(self.index_buffer.slice(..), wgpu::IndexFormat::Uint16);
-            // render_pass.draw_indexed(0..self.num_indices, 0, 0..self.instances.len() as _);
         }
 
         self.queue.submit(Some(encoder.finish()));

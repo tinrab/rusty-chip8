@@ -542,7 +542,7 @@ async fn run(event_loop: EventLoop<()>, window: Window, rom: Vec<u8>) -> AppResu
                     }
 
                     if let PhysicalKey::Code(key_code) = event.physical_key {
-                        if event.state.is_pressed() && KeyCode::Space == key_code {
+                        if KeyCode::Space == key_code && event.state.is_pressed() {
                             paused = !paused;
                         }
 
@@ -575,22 +575,28 @@ async fn run(event_loop: EventLoop<()>, window: Window, rom: Vec<u8>) -> AppResu
 }
 
 fn get_key_index(key_code: KeyCode) -> Option<usize> {
+    /*
+        1 2 3 4
+        Q W E R
+        A S D F
+        Z X C V
+    */
     const KEY_MAP: [KeyCode; 16] = [
-        KeyCode::KeyX,
         KeyCode::Digit1,
         KeyCode::Digit2,
         KeyCode::Digit3,
+        KeyCode::Digit4,
         KeyCode::KeyQ,
         KeyCode::KeyW,
         KeyCode::KeyE,
+        KeyCode::KeyR,
         KeyCode::KeyA,
         KeyCode::KeyS,
         KeyCode::KeyD,
-        KeyCode::KeyZ,
-        KeyCode::KeyC,
-        KeyCode::Digit4,
-        KeyCode::KeyR,
         KeyCode::KeyF,
+        KeyCode::KeyZ,
+        KeyCode::KeyX,
+        KeyCode::KeyC,
         KeyCode::KeyV,
     ];
     KEY_MAP.iter().position(|&k| k == key_code)

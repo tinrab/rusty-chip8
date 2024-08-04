@@ -18,8 +18,6 @@ impl World {
     pub fn new(surface_size: PhysicalSize<u32>) -> Self {
         let camera = Camera {
             position: Vector3::new(0.0f32, 0.0f32, -1.0f32),
-            // aspect: surface_size.width as f32 / surface_size.height as f32,
-            // scale: surface_size.width as f32,
             size: Vector2::new(surface_size.width as f32, surface_size.height as f32),
         };
 
@@ -42,7 +40,6 @@ impl World {
     }
 
     pub fn resize(&mut self, new_size: PhysicalSize<u32>) {
-        // self.camera.aspect = new_size.width as f32 / new_size.height as f32;
         self.camera.size = Vector2::new(new_size.width as f32, new_size.height as f32);
     }
 }

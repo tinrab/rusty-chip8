@@ -64,7 +64,6 @@ impl InstanceData {
 
 impl Mesh {
     pub fn create_square(device: &wgpu::Device) -> Self {
-        // square from 0 to 1
         const VERTICES: &[Vertex] = &[
             Vertex {
                 position: [0.0, 0.0, 0.0],
